@@ -22,9 +22,9 @@ namespace DFSalgorithm
             }
         }
 
-        public void AddEdge(int src, int dest)
+        public void AddEdge(int src, int dest) // add edge from src to dest
         {
-            adjLists[src].Add(dest);
+            adjLists[src].Add(dest); // add dest to src's list
         }
 
         public void DFS(int startNode, bool[] visited)
@@ -32,7 +32,7 @@ namespace DFSalgorithm
             visited[startNode] = true;
             Console.WriteLine(startNode + " ");
 
-            foreach (int neighbor in adjLists[startNode])
+            foreach (int neighbor in adjLists[startNode]) // visit all neighbors of startNode
             {
                 if (!visited[neighbor])
                 {
@@ -43,11 +43,11 @@ namespace DFSalgorithm
 
         public void DFSTraversal(int startNode)
         {
-            bool[] visited = new bool[numVertices];
+            bool[] visited = new bool[numVertices]; // by default all values are false
 
             DFS(startNode, visited);
         }
-    }
+    } // end of class
 
     public class Program
     {
@@ -69,5 +69,5 @@ namespace DFSalgorithm
             Console.WriteLine("Depth First Traversal (starting from vertex 1)");
             graph.DFSTraversal(1);
         }
-    }
+    } // end of class
 }
