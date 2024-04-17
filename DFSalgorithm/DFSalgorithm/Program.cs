@@ -6,55 +6,46 @@ using System.Threading.Tasks;
 
 namespace DFSalgorithm
 {
-    public class DFS
+    public class Graph
     {
-        public List<int> Traverse(List<List<int>> graph, int start, bool stepByStep = true)
+        private int numVertices;
+        private List<int>[] adjLists;
+
+        public Graph(int numVertices)
         {
-            List<int> traversalResult = new List<int>();
-            bool[] visited = new bool[graph.Count];
+            this.numVertices = numVertices;
+            adjLists = new List<int>[numVertices];
 
-            if (stepByStep)
+            for (int i = 0; i < numVertices; i++)
             {
-                DFSStepByStep(graph, start - 1, visited, traversalResult);
+                adjLists[i] = new List<int>();
             }
-            else
-            {
-                DFSUtil(graph, start - 1, visited, traversalResult);
-            }
-
-            return traversalResult;
         }
 
-        private void DFSStepByStep(List<List<int>> graph, int node, bool[] visited, List<int> traversalResult)
+        public void AddEdge(int src, int dest)
         {
-            visited[node] = true;
-            traversalResult.Add(node + 1);
-            Console.WriteLine("Visited node: " + (node + 1));
-
-            foreach (int neighbor in graph[node])
-            {
-                if (!visited[neighbor - 1])
-                {
-                    Console.WriteLine("Pushed node onto stack: " + neighbor);
-                    DFSStepByStep(graph, neighbor - 1, visited, traversalResult);
-                }
-            }
-
-            Console.WriteLine("Popped node from stack: " + (node + 1));
+            adjLists[src].Add(dest);
         }
 
-        private void DFSUtil(List<List<int>> graph, int node, bool[] visited, List<int> traversalResult)
+        public void DFS(int startNode, bool[] visited)
         {
-            visited[node] = true;
-            traversalResult.Add(node + 1);
+            visited[startNode] = true;
+            Console.WriteLine(startNode + " ");
 
-            foreach (int neighbor in graph[node])
+            foreach (int neighbor in adjLists[startNode])
             {
-                if (!visited[neighbor - 1])
+                if (!visited[neighbor])
                 {
-                    DFSUtil(graph, neighbor - 1, visited, traversalResult);
+                    DFS(neighbor, visited);
                 }
             }
+        }
+
+        public void DFSTraversal(int startNode)
+        {
+            bool[] visited = new bool[numVertices];
+
+            DFS(startNode, visited);
         }
     }
 
@@ -62,28 +53,21 @@ namespace DFSalgorithm
     {
         public static void Main(string[] args)
         {
-            List<List<int>> graph = new List<List<int>>()
-        {
-            new List<int>() { 2 },
-            new List<int>() { 1, 3, 4 },
-            new List<int>() { 2, 5, 6 },
-            new List<int>() { 2 },
-            new List<int>() { 3 },
-            new List<int>() { 3 },
-            new List<int>() { }
-        };
+            int numVertices = 10;
+            Graph graph = new Graph(numVertices);
 
-            DFS dfs = new DFS();
+            graph.AddEdge(1, 2);
+            graph.AddEdge(1, 9);
+            graph.AddEdge(2, 3);
+            graph.AddEdge(2, 4);
+            graph.AddEdge(2, 5);
+            graph.AddEdge(5, 6);
+            graph.AddEdge(5, 7);
+            graph.AddEdge(9, 6);
+            graph.AddEdge(6, 8);
 
-            // Output step-by-step
-            Console.WriteLine("Step-by-step traversal:");
-            List<int> stepByStepResult = dfs.Traverse(graph, 1);
-
-            // Print the final traversal result in ascending order
-            Console.WriteLine("\nFinal traversal result:");
-            List<int> finalResult = stepByStepResult;
-            finalResult.Sort();
-            Console.WriteLine(string.Join(" ", finalResult));
+            Console.WriteLine("Depth First Traversal (starting from vertex 1)");
+            graph.DFSTraversal(1);
         }
     }
 }
