@@ -1,0 +1,7 @@
+C:\Users\vchup\source\repos\DFSalgorithm\DFSalgorithm\bin\Debug\DFSalgorithm.exe.config
+C:\Users\vchup\source\repos\DFSalgorithm\DFSalgorithm\bin\Debug\DFSalgorithm.exe
+C:\Users\vchup\source\repos\DFSalgorithm\DFSalgorithm\bin\Debug\DFSalgorithm.pdb
+C:\Users\vchup\source\repos\DFSalgorithm\DFSalgorithm\obj\Debug\DFSalgorithm.csproj.AssemblyReference.cache
+C:\Users\vchup\source\repos\DFSalgorithm\DFSalgorithm\obj\Debug\DFSalgorithm.csproj.CoreCompileInputs.cache
+C:\Users\vchup\source\repos\DFSalgorithm\DFSalgorithm\obj\Debug\DFSalgorithm.exe
+C:\Users\vchup\source\repos\DFSalgorithm\DFSalgorithm\obj\Debug\DFSalgorithm.pdb
